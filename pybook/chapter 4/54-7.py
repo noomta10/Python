@@ -1,4 +1,4 @@
-def computegrade(score):
+def compute_grade(score):
     if score >= 0.9:
         print("A")
     elif score >= 0.8:
@@ -7,10 +7,11 @@ def computegrade(score):
         print("C")
     elif score >= 0.6:
         print("D")
-    elif score <= 0.6 and score >= 0:
+    elif 0.6 >= score >= 0:
         print("FAILED")
 
     else:
-     print("bad score")
+        print("bad score")
 
-computegrade(0.9)
+
+compute_grade(0.9)
