@@ -1,16 +1,20 @@
+
+def replace_once(line):
+    duppos = line.find("duplicate")
+    sppos = line.find(" ", duppos)
+    num = int(line[sppos + 1])
+    wordpos = line.find(" ", sppos + 1)
+    wordend = line.find(" ", wordpos + 1)
+    word = line[wordpos + 1:wordend]
+    word = word + " "
+    return line[:duppos] + word * num + line[wordend + 1:]
+
+
 def main():
     sentence = input("write a sentence: ")
-    if "duplicate" in sentence:
-        duppos = sentence.find("duplicate")
-        sppos = sentence.find(" ", duppos)
-        num = int(sentence[sppos+1])
-        wordpos = sentence.find(" ", sppos+1)
-        wordend = sentence.find(" ", wordpos+1)
-        word = sentence[wordpos:wordend]
-        print(sentence[:duppos] + word * num + sentence[wordend:])
-
-    else:
-        print(sentence)
+    while "duplicate" in sentence:
+        sentence = replace_once(sentence)
+    print(sentence)
 
 
 main()
