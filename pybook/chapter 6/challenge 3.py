@@ -1,13 +1,17 @@
-
 def replace_once(line):
-    duppos = line.find("duplicate")
-    sppos = line.find(" ", duppos)
-    num = int(line[sppos + 1])
-    wordpos = line.find(" ", sppos + 1)
-    wordend = line.find(" ", wordpos + 1)
-    word = line[wordpos + 1:wordend]
-    word = word + " "
-    return line[:duppos] + word * num + line[wordend + 1:]
+    duplicate_position = line.find("duplicate")
+    space_position = line.find(" ", duplicate_position)
+    number = int(line[space_position + 1])
+    word_position = line.find(" ", space_position + 1)
+    word_end = line.find(" ", word_position + 1)
+    if word_end == -1:
+        word = line[word_position + 1:]
+        word = word + " "
+        return line[:duplicate_position] + word * number
+    else:
+        word = line[word_position + 1:word_end]
+        word = word + " "
+        return line[:duplicate_position] + word * number + line[word_end + 1:]
 
 
 def main():
