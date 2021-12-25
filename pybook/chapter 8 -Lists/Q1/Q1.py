@@ -5,10 +5,10 @@ def main():
         number = int(number.strip())
         if number not in unique_numbers:
             unique_numbers.append(number)
-        else:
-            continue
     unique_numbers.sort()
-    for x in range(len(unique_numbers)):
-        print(unique_numbers[x])
+    # for index_in_number in range(len(unique_numbers)):
+    #     print(unique_numbers[index_in_number])
+    for number in unique_numbers:
+        print(number)
 
 main()

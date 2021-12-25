@@ -1,7 +1,7 @@
 try:
     number_list = []
     number = ""
-    while number != "done":
+    while True:
         number = input("enter a number: ")
         if number == "done":
             break
