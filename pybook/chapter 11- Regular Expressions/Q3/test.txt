@@ -1,0 +1,8 @@
+bv. - Sentence #1 word #1 is invalid.
+bb dddd ddd. - Sentence #2 word must be longer than previous.
+bob deed booodeeed.
+b dd bbb dddd bbdbdd.
+b boob
+deed deedoob. - Sentence #6 word #1 is invalid
+b b b. - Sentence #7 word must be longer than previous. (?)
+abc. - Sentence #8 word #1 is invalid
