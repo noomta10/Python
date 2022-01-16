@@ -1,4 +1,4 @@
-from main import print_error_for_line
+from main import validate
 
 
 def test():
@@ -8,7 +8,11 @@ def test():
         line = line.strip()
         line_count += 1
         line = line.split(" - ")
-        print_error_for_line(line[0], line_count)
+        msg = validate(line[0], line_count)
+        if msg == line[-1]:
+            print("As expected.")
+        else:
+            print("Not as expected, printed {} supposed to print {}".format(msg, line[1]))
 
 
 test()
