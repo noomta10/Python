@@ -9,9 +9,9 @@ def main():
     for line in file:
         line = line.rstrip()
         if re.findall("^New Revision: ([0-9]+)", line):
-            x = re.findall("^New Revision: ([0-9]+)", line)
+            dfddd = re.findall("^New Revision: ([0-9]+)", line)
             count += 1
-            total += int(x[0])
+            total += int(dfddd[0])
     print(total / count)
 
 
