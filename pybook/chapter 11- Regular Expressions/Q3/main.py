@@ -5,30 +5,28 @@ def main():
     file = open("input.txt", "r")
     line_count = 0
     for line in file:
-        line = line.rstrip()
+        line = line.strip()
         line_count += 1
-        msg = validate(line, line_count)
-        print(msg)
+        message = validate(line, line_count)
+        print(message)
 
 
 def validate(line, line_count):
-    check = check_word(line, line_count)
-    if check is not None:
-        return check
-    longer = longer_than_previous(line, line_count)
-    if longer is not None:
-        return longer
-    ends = ends_with_dot(line, line_count)
-    if ends is not None:
-        return ends
+    error_message = check_word(line, line_count)
+    if error_message is not None:
+        return error_message
+    error_message = longer_than_previous(line, line_count)
+    if error_message is not None:
+        return error_message
+    error_message = ends_with_dot(line, line_count)
+    if error_message is not None:
+        return error_message
     return "Sentence #{} is valid".format(line_count)
 
 
 def ends_with_dot(line, line_count):
     if not line.endswith("."):
         return "Sentence #{} is invalid missing dot at the end.".format(line_count)
-    else:
-        return
 
 
 def check_word(line, line_count):
@@ -37,20 +35,19 @@ def check_word(line, line_count):
     words = line.split()
     for word in words:
         word_index = words.index(word)
+        word_position = word_index + 1
         word_pattern = "^" \
                        "(" \
-                       "([bd]*[o]{{{}}}[e]{{{}}}[bd]*)|" \
+                       "([bd]*[o]{{{}}}[bd]*[e]{{{}}}[bd]*)|" \
+                       "([bd]*[e]{{{}}}[bd]*[o]{{{}}}[bd]*)|" \
                        "([bd]*)|" \
                        "([bd]*[o]{{{}}}[bd]*)|" \
                        "([bd]*[e]{{{}}}[bd]*)|" \
                        ")" \
-                       "$".format(
-            (word_index + 1), (word_index + 1), (word_index + 1), (word_index + 1))
+                       "$".format(word_position, word_position, word_position, word_position, word_position, word_position)
         is_it_valid = re.findall(word_pattern, word)
         if len(is_it_valid) == 0:
             return "Sentence #{} word #{} is invalid.".format(line_count, word_index + 1)
-        else:
-            return
 
 
 def longer_than_previous(line, line_count):

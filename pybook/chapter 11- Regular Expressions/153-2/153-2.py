@@ -8,10 +8,10 @@ def main():
     total = 0
     for line in file:
         line = line.rstrip()
-        if re.findall("^New Revision: ([0-9]+)", line):
-            x = re.findall("^New Revision: ([0-9]+)", line)
+        number_match = re.findall("^New Revision: ([0-9]+)", line)
+        if number_match:
             count += 1
-            total += int(x[0])
+            total += int(number_match[0])
     print(total / count)
 
 

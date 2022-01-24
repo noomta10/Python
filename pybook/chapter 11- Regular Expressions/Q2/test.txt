@@ -11,6 +11,8 @@ true 1.
 true 2.2
 true -.1
 true 1 + 1 + 1
+true x
+true 2
 true x + 2
 true 234567
 true 1 + 1
@@ -22,12 +24,13 @@ true -a
 false aa - b
 false a. - b
 false -1 - 2 - 0.6.6.6
-false 1 + + 2
 false -.2.2 + 1
-false --a + +2
-false 2 + 6 +
 true 5 - -a + 5
 true 2a
 true 334a - 2b
 true 0.4a * -22.3b
 true a / b + .6 - 42 - t + 0.5
+false --a
+false --a + +2
+false 1 + + 2
+false 2 + 6 +

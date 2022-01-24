@@ -8,11 +8,11 @@ def test():
         line = line.strip()
         line_count += 1
         line = line.split(" - ")
-        msg = validate(line[0], line_count)
-        if msg == line[-1]:
+        message = validate(line[0], line_count)
+        if message == line[-1]:
             print("As expected.")
         else:
-            print("Not as expected, printed {} supposed to print {}".format(msg, line[1]))
+            print("Not as expected, printed {} supposed to print {}".format(message, line[1]))
 
 
 test()

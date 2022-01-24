@@ -8,20 +8,16 @@ def test():
         line_index += 1
         line = line.split()
         formula = ' '.join(line[1:])
-        is_it_valid = check_valid(formula)
+        matches = check_valid(formula)
         working = True
-        if is_it_valid:
-            if line[0] == "true":
-                continue
-            else:
+        if matches:
+            if line[0] != "true":
                 print("Expected to be invalid, found valid, line {}".format(line_index))
                 working = False
                 break
 
         else:
-            if line[0] == "false":
-                continue
-            else:
+            if line[0] != "false":
                 print("Expected to be valid, found invalid, line {}".format(line_index))
                 working = False
                 break
