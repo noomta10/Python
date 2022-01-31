@@ -1,13 +1,16 @@
-import urllib.request, urllib.parse, urllib.error
-import re
-import ssl
+import urllib.request
 
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
-
-url = input('Enter - ')
-html = urllib.request.urlopen(url, context=ctx).read()
-links = re.findall(b'href="(http[s]?://.*?)"', html)
-for link in links:
-    print(link.decode())
+url = input("Enter URL: ")
+file_handler = urllib.request.urlopen(url)
+character_count = 0
+character_printed = 0
+for line in file_handler:
+    character_count += len(line)
+    if character_printed < 3000:
+        if character_count < 3000:
+            print(line.decode().strip())
+            character_printed += len(line)
+        else:
+            print(line[0:3000-character_printed].decode().strip())
+            character_printed = 3000
+print("Total number of characters: {}.".format(character_count))
