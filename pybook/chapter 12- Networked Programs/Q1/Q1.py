@@ -14,5 +14,5 @@ html = urllib.request.urlopen(url, context=ctx).read()
 soup = BeautifulSoup(html, 'html.parser')
 
 titles = soup('h2')
-for title in titles:
-    print(title.content[0])
+title = titles[0]
+print(title.contents[0])
