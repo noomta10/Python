@@ -1,4 +1,3 @@
-import re
 import ssl
 import urllib.error
 import urllib.request
@@ -13,6 +12,6 @@ url = "https://www.walla.co.il/"
 html = urllib.request.urlopen(url, context=ctx).read()
 soup = BeautifulSoup(html, 'html.parser')
 
-titles = soup('h2')
-title = titles[0]
-print(title.contents[0])
+h2_titles = soup('h2')
+main_title = h2_titles[0]
+print(main_title.contents[0])

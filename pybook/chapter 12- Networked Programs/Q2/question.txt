@@ -1,0 +1,2 @@
+Q2:
+Write a program that prints all news titles from https://www.tapuz.co.il/
