@@ -13,7 +13,7 @@ def main():
         elif line_index == 2:
             normal_hours_count = int(line)
         elif line_index == 3:
-            extra_add_percent = int(line)
+            extra_add_percent = float(line)
         else:
             calculate_line_hours(line, day_hour)
         line_index += 1

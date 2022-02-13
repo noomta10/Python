@@ -9,9 +9,7 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-url = "https://blogs.tapuz.co.il/wp-json/authorpost/v1/get_get_author_listing/?count=22"
-
-request = urllib.request.Request(url)
+request = urllib.request.Request("https://blogs.tapuz.co.il/wp-json/authorpost/v1/get_get_author_listing/?count=22")
 request.add_header("User-Agent",
                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36")
 html = urllib.request.urlopen(request).read()

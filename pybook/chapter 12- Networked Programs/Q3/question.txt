@@ -1,0 +1,2 @@
+Q3:
+Write a program that connects https://www.tapuz.co.il/, finds the first 3 images, and saves them to the local machine.
