@@ -16,5 +16,4 @@
 
 JIRA_PLUGINS = {"project": "https://marketplace.atlassian.com/apps/1211147/project-configurator-for-jira?hosting=datacenter&tab=overview"}
 CONFLUENCE_PLUGINS = {"page": "https://marketplace.atlassian.com/apps/1217079/page-view-tracker?hosting=datacenter&tab=overview"}
-
 ATLASSIAN_PLUGINS = JIRA_PLUGINS | CONFLUENCE_PLUGINS 
