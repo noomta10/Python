@@ -1,10 +1,12 @@
+from config import * 
+import os 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-def get_license():
+def get_license(plugin_name, plugin_url):
     # Initialize the WebDriver 
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-blink-features=AutomationControlled')
@@ -12,7 +14,7 @@ def get_license():
     driver = webdriver.Chrome(service = chrome_service, options=options)
 
     # Navigate to the URL
-    driver.get('https://marketplace.atlassian.com/apps/1226187/time-in-status-reports?hosting=datacenter&tab=overview')
+    driver.get(plugin_url)
 
     # Wait for the "Try it free" button to be clickable and click it
     try_it_free_button = WebDriverWait(driver, 10).until(
@@ -67,13 +69,20 @@ def get_license():
     license_key = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((By.ID, 'license-key'))
     )
-    print(license_key.get_attribute('value'))
+    
+    license = license_key.get_attribute('value')
+    with open (f"Atlassian plugins licenses\{plugin_name}.txt", "w") as license_file:
+        license_file.write(license)
 
     # Close the WebDriver
     driver.quit()
 
 def main():
-    get_license()
+    if not os.path.exists("Atlassian plugins licenses"):
+        os.makedirs("Atlassian plugins licenses")
+
+    for plugin_name, plugin_url in ATLASSIAN_PLUGINS.items():
+        get_license(plugin_name, plugin_url)
 
 if __name__ == "__main__":
     main()
