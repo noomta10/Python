@@ -97,7 +97,7 @@ def get_license(plugin_name, plugin_url):
     generate_license_button = driver.find_element(By.XPATH, '//span[contains(text(), "Generate License")]/..')
     generate_license_button.click()
 
-    # Wait for the license key to be visible and print it
+    # Wait for the license key to be visible 
     license_key = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((By.ID, 'license-key'))
     )
