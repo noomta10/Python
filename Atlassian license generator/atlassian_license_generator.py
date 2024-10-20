@@ -38,14 +38,14 @@ def get_license(plugin_name, plugin_url):
     driver.switch_to.window(driver.window_handles[-1])
 
     # Fill in the Google email
-    google_email_input = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'identifierId')))
+    google_email_input = WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.ID, 'identifierId')))
     google_email_input.send_keys('iglooteam1@gmail.com')
     google_email_input.send_keys(Keys.ENTER)
 
     # Wait for the password input
-    google_password_input = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, 'Passwd')))
+    google_password_input = WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.NAME, 'Passwd')))
     google_password_input.send_keys('devspace123')
-    google_password_input.send_keys(Keys.ENTER)
+    google_password_input.send_keys(Keys.ENTER) 
 
     driver.switch_to.window(driver.window_handles[0])
 
@@ -76,6 +76,7 @@ def get_license(plugin_name, plugin_url):
 
     # Close the WebDriver
     driver.quit()
+
 
 def main():
     if not os.path.exists("Atlassian plugins licenses"):
