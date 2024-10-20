@@ -10,12 +10,18 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import TimeoutException
 
 
-def get_license(plugin_name, plugin_url):
+def set_driver():
     # Initialize the WebDriver 
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-blink-features=AutomationControlled')
     chrome_service = webdriver.ChromeService(executable_path=r"C:\Users\itush\Documents\chromedriver-win64\chromedriver.exe")
     driver = webdriver.Chrome(service = chrome_service, options=options)
+
+    return driver 
+
+
+def get_license(plugin_name, plugin_url):
+    driver = set_driver()
 
     # Navigate to the URL
     driver.get(plugin_url)
@@ -42,9 +48,6 @@ def get_license(plugin_name, plugin_url):
         # If the button doesn't appear, continue with the rest of the script
         print("Button not found, continuing script.")
         
-
-
-
     # Wait for the "Try it free" button to be clickable and click it
     try_it_free_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[data-testid="app-listing__install-app-btn"]'))
