@@ -1,10 +1,14 @@
 from config import * 
 import os 
+import time 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import TimeoutException
+
 
 def get_license(plugin_name, plugin_url):
     # Initialize the WebDriver 
@@ -15,6 +19,31 @@ def get_license(plugin_name, plugin_url):
 
     # Navigate to the URL
     driver.get(plugin_url)
+    
+    # Close the cookie pop-up button
+    cookie_close_button = WebDriverWait(driver, 5).until(
+        EC.element_to_be_clickable((By.CLASS_NAME, "onetrust-close-btn-handler"))
+    )
+    
+    # Click the "X" button to close the cookies popup
+    cookie_close_button.click()
+    print("Cookie pop-up closed.")
+
+    try:
+        # Wait for the "Got it" button to appear, max wait time = 5 seconds
+        button = WebDriverWait(driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, "//button[span[text()='Got it']]"))
+        )
+        #time.sleep(50)
+        # Click the button if found
+        button.click()
+        print("Button clicked.")
+    except TimeoutException:
+        # If the button doesn't appear, continue with the rest of the script
+        print("Button not found, continuing script.")
+        
+
+
 
     # Wait for the "Try it free" button to be clickable and click it
     try_it_free_button = WebDriverWait(driver, 10).until(
